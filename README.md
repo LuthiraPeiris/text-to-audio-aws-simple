@@ -1,10 +1,8 @@
 # 📄 Text-to-Audio Convertor Web App using AWS (PDF to MP3 + Email Delivery)
 
-<p align="center">
-  <strong>A serverless AWS application that converts PDF and DOCX documents into MP3 audio using Amazon Polly and delivers the generated audio through email.</strong>
+<p>
+A serverless AWS application that converts PDF and DOCX documents into MP3 audio using Amazon Polly and delivers the generated audio through email.
 </p>
-
----
 
 ## Architecture
 ![Image Alt](https://github.com/LuthiraPeiris/text-to-audio-aws-simple/blob/23d390016dc7ddb7f7b7a379983a7451648cfa4b/image/diagram.png)

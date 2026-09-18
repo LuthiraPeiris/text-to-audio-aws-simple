@@ -1,11 +1,67 @@
 # 📄 Text-to-Audio Convertor Web App using AWS (PDF to MP3 + Email Delivery)
 
+<p align="center">
+  <strong>A serverless AWS application that converts PDF and DOCX documents into MP3 audio using Amazon Polly and delivers the generated audio through email.</strong>
+</p>
+
+---
+
+## Architecture
+![Image Alt](https://github.com/LuthiraPeiris/text-to-audio-aws-simple/blob/23d390016dc7ddb7f7b7a379983a7451648cfa4b/image/diagram.png)
+
+
+<p align="center">
+  <img src="https://img.shields.io/badge/AWS-Serverless-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" alt="AWS"/>
+  <img src="https://img.shields.io/badge/Amazon_S3-Storage-569A31?style=for-the-badge&logo=amazons3&logoColor=white" alt="Amazon S3"/>
+  <img src="https://img.shields.io/badge/AWS_Lambda-Python-FF9900?style=for-the-badge&logo=awslambda&logoColor=white" alt="AWS Lambda"/>
+  <img src="https://img.shields.io/badge/Amazon_Polly-TTS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white" alt="Amazon Polly"/>
+  <img src="https://img.shields.io/badge/Amazon_SES-Email-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white" alt="Amazon SES"/>
+  <img src="https://img.shields.io/badge/API_Gateway-API-FF4F8B?style=for-the-badge&logo=amazonaws&logoColor=white" alt="API Gateway"/>
+</p>
+
+---
+
 This project is a **real-world, serverless web application** built on AWS that allows users to:
 
 * Upload a **PDF or DOCX** file
 * Select a **Polly voice**
 * Convert the document's text into **MP3 audio**
 * Automatically **email the generated audio file** to the user
+
+---
+
+## 📌 Project Overview
+
+The **Text-to-Audio Converter** is a serverless web application built using AWS services.
+
+Users can upload a PDF or DOCX document, select an Amazon Polly voice, and provide an email address. The application extracts the document's text, converts it into speech using Amazon Polly, stores the generated MP3 file in Amazon S3, and sends the user an email containing a temporary download link.
+
+The application demonstrates how multiple managed AWS services can be combined to create an event-driven, serverless workflow without managing traditional application servers.
+
+### Core Workflow
+
+```text
+Document Upload
+      ↓
+Amazon S3
+      ↓
+S3 Event Notification
+      ↓
+AWS Lambda
+      ↓
+Text Extraction
+      ↓
+Amazon Polly
+      ↓
+MP3 Generation
+      ↓
+Amazon S3
+      ↓
+Presigned Download URL
+      ↓
+Amazon SES
+      ↓
+User Email
 
 ---
 
@@ -45,22 +101,6 @@ This project is a **real-world, serverless web application** built on AWS that a
 * ✅ Choose from multiple Amazon Polly voices
 * ✅ Email delivery with clickable download/play link
 * ✅ No servers to manage (fully serverless)
-
----
-
-## 🌍 Architecture Diagram
-
-```
-[Frontend] --(POST)--> [API Gateway] --> [Lambda: generateUploadUrl] --> [S3: uploads/]
-                                                                 |
-                                                                 V
-                                                           [Presigned URL]
-
-[S3: uploads/] --(Trigger)--> [Lambda: convertTextToAudio] --> [Amazon Polly]
-                                                                  |
-                                                                  V
-                                                       [S3: audio/] --> [SES Email to User]
-```
 
 ---
 
